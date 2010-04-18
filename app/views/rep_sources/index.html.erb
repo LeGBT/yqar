@@ -1,0 +1,23 @@
+<h1>Listing rep_sources</h1>
+
+<table>
+  <tr>
+    <th>Path</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rep_sources.each do |rep_source| %>
+  <tr>
+    <td><%= rep_source.path %></td>
+    <td><%= link_to 'Show', rep_source %></td>
+    <td><%= link_to 'Edit', edit_rep_source_path(rep_source) %></td>
+    <td><%= link_to 'Destroy', rep_source, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rep source', new_rep_source_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  imdb_id: MyString
+  path: MyString
+  hash: MyString
+
+two:
+  imdb_id: MyString
+  path: MyString
+  hash: MyString

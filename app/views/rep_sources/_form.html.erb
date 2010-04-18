@@ -1,0 +1,20 @@
+<%= form_for(@rep_source) do |f| %>
+  <% if @rep_source.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@rep_source.errors.count, "error") %> prohibited this rep_source from being saved:</h2>
+    <ul>
+    <% @rep_source.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :path %><br />
+    <%= f.text_field :path %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
