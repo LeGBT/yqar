@@ -1,6 +1,8 @@
 class FilmsController < ApplicationController
   def index
 	  	require 'digest/sha1'
+		require 'Hpricot'
+		require "#{Rails.root}/libimdb/imdb.rb"
 		@rep_sources = RepSource.all
 		res=[]
 		@rep_sources.each{|s|
@@ -13,10 +15,19 @@ class FilmsController < ApplicationController
 				sha1 = Digest::SHA1.hexdigest(num)
 				#	puts sha1
 				res.push(x)
-				res.push(sha1)
+				#res.push(sha1)
+				xprime=x.gsub(/^.*\//,'').gsub(/\[[^\[]*\]/,'').gsub(/\....$/,'').gsub(/[^0-9][1-2][0-9]{3}.*$/,'()').gsub(/\(.*\)/,'').gsub(/[^A-z]/,' ').gsub(/_/,' ')
+				#res.push(xprime)
+					i = Imdb::Search.new(xprime)
+					res.push(i.movies[0].title)
+					res.push(i.movies[0].id)
 			}
 		}
 		@liste=res.compact
+  end
+
+  def rebase
+
   end
 
 end
