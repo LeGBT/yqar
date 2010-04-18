@@ -4,7 +4,7 @@ class FilmsController < ApplicationController
 		@rep_sources = RepSource.all
 		res=[]
 		@rep_sources.each{|s|
-#			puts s.path
+			res.push(s.path)
 			Dir.chdir(s.path)
 			Dir.glob("**/*{.mkv,.avi,.mpg,.mp4}").each{|x|
 				#	puts "Got #{x}" 
