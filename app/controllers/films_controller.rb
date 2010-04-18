@@ -1,6 +1,6 @@
 class FilmsController < ApplicationController
-  def index
-	  	require 'digest/sha1'
+	def index
+		require 'digest/sha1'
 		require 'Hpricot'
 		require "#{Rails.root}/libimdb/imdb.rb"
 		@rep_sources = RepSource.all
@@ -17,17 +17,19 @@ class FilmsController < ApplicationController
 				res.push(x)
 				#res.push(sha1)
 				xprime=x.gsub(/^.*\//,'').gsub(/\[[^\[]*\]/,'').gsub(/\....$/,'').gsub(/[^0-9][1-2][0-9]{3}.*$/,'()').gsub(/\(.*\)/,'').gsub(/[^A-z]/,' ').gsub(/_/,' ')
-				#res.push(xprime)
+					#res.push(xprime)
 					i = Imdb::Search.new(xprime)
-					res.push(i.movies[0].title)
-					res.push(i.movies[0].id)
+					unless i.movies == [] then
+						res.push(i.movies[0].title)
+						res.push(i.movies[0].id)
+					end
 			}
 		}
 		@liste=res.compact
-  end
+	end
 
-  def rebase
+	def rebase
 
-  end
+	end
 
 end
